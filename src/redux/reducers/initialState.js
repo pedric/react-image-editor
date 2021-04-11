@@ -79,6 +79,7 @@ const state = {
     name: "1:1",
     x: 100,
     y: 100,
+    margin: 10,
   },
   image: {
     upload: "",

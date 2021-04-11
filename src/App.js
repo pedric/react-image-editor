@@ -1,13 +1,13 @@
 import "./App.css";
 import Menu from "./components/Menu";
 import LayoutPanel from "./components/LayoutPanel";
+import Canvas from "./components/Canvas";
 
 function App() {
   return (
     <div className='App'>
-      <h1>app..</h1>
+      <Canvas />
       <Menu />
-      <LayoutPanel />
     </div>
   );
 }

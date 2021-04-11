@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../redux/actions/menuActions";
 import * as actions from "../../redux/actions/actionTypes";
+import WorkArea from "../WorkArea";
 
 const Menu = ({ toggleMenu, options, active, ...props }) => {
-  useEffect(() => {
-    console.log("active", active);
-  }, [active]);
+  // useEffect(() => {
+  //   console.log("active", active);
+  // }, [active]);
 
   const toggle = (panel) => {
     toggleMenu(panel);
@@ -22,6 +23,7 @@ const Menu = ({ toggleMenu, options, active, ...props }) => {
             </button>
           ))
         : null}
+      <WorkArea activeTab={active} />
     </>
   );
 };
