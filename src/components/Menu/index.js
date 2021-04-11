@@ -1,37 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { setLayout } from "../../redux/actions/layoutActions";
+import { toggleMenu } from "../../redux/actions/menuActions";
 import * as actions from "../../redux/actions/actionTypes";
 
-const Menu = ({ changeLayout, layout, state, ...props }) => {
+const Menu = ({ toggleMenu, options, active, ...props }) => {
   useEffect(() => {
-    console.log(layout);
-  }, [layout]);
+    console.log("active", active);
+  }, [active]);
 
-  const updateLayout = () => {
-    // dispatch({
-    //   type: actions.SET_LAYOUT,
-    //   payload: { name: "2:3", x: 100, y: 66 },
-    // });
-    changeLayout({ name: "2:3", x: 100, y: 66 });
+  const toggle = (panel) => {
+    toggleMenu(panel);
   };
 
   return (
     <>
       <h2>menu template</h2>
-      <button onClick={() => updateLayout()}>byt ratio</button>
+      {options.length > 0
+        ? options.map((option) => (
+            <button key={option} onClick={() => toggle(option)}>
+              {option}
+            </button>
+          ))
+        : null}
     </>
   );
 };
-const mapStateToProps = (state, ownProps) => {
+
+const mapStateToProps = (state) => {
   return {
-    layout: state.layoutReducer,
+    options: ["layout", "image", "logo", "text", "colors", "download"],
+    active: state.menuReducer.active,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeLayout: (layout) => dispatch(setLayout(layout)),
+    toggleMenu: (panel) => dispatch(toggleMenu(panel)),
   };
 };
 
