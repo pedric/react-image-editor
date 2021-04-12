@@ -7,23 +7,43 @@ import * as actions from "../../redux/actions/actionTypes";
 const Menu = ({ changeLayout, layout, state, ...props }) => {
   const [margin, setMargin] = useState(50);
   useEffect(() => {
-    console.log("margin", margin);
-    changeLayout({ ...layout, margin });
-  }, [margin]);
+    changeLayout({ ...layout, margin: parseInt(margin) });
+  }, [margin, changeLayout]);
 
-  const updateLayout = () => {
+  const updateLayout = (obj) => {
     // dispatch({
     //   type: actions.SET_LAYOUT,
     //   payload: { name: "2:3", x: 100, y: 66 },
     // });
-    changeLayout({ name: "2:3", x: 100, y: 66, margin });
+    changeLayout(obj);
   };
 
   return (
     <>
-      <h2>layout workarea template</h2>
-      <button onClick={() => updateLayout()}>byt ratio</button>
-      <RangeInput value={margin} setValue={setMargin} />
+      <div>
+        <button
+          onClick={() => updateLayout({ name: "1:1", x: 100, y: 100, margin })}
+        >
+          3:2
+        </button>
+        <button
+          onClick={() => updateLayout({ name: "3:2", x: 100, y: 66, margin })}
+        >
+          3:2
+        </button>
+        <button
+          onClick={() => updateLayout({ name: "2:3", x: 66, y: 100, margin })}
+        >
+          3:2
+        </button>
+      </div>
+      <div>
+        <RangeInput
+          value={margin}
+          setValue={setMargin}
+          range={{ min: 0, max: 100 }}
+        />
+      </div>
     </>
   );
 };
