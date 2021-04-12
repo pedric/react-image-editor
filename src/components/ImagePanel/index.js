@@ -26,16 +26,17 @@ const ImagePanel = ({ changeImage, image }) => {
   const [size, setSize] = useState(50);
 
   /*
-  The "flow" is ->
-   update local state with reducer which updates by separate
-   useEffect "listening" on useState for each property 
+  The "flow" is as;
+  update local state with reducer which updates by separate
+  useEffect "listening" on useState(passed as props to inputs) for each property.
+  The complexity is from this being a school-project where I'm supposed
+  to use Redux and lot of different hooks.
   */
   useEffect(() => {
     changeImage(state);
   }, [state, changeImage]);
 
   useEffect(() => {
-    console.log("url", url);
     dispatch({ type: "url", payload: url });
   }, [url]);
 
@@ -51,12 +52,12 @@ const ImagePanel = ({ changeImage, image }) => {
     dispatch({ type: "y", payload: y });
   }, [y]);
 
-  const handleUpload = (e) => {
-    console.log(1);
-    const _url = URL.createObjectURL(e.target.files[0]);
-    // dispatch({ type: "url", payload: _url });
-    setUrl(_url);
-  };
+  // const handleUpload = (e) => {
+  //   console.log(1);
+  //   const _url = URL.createObjectURL(e.target.files[0]);
+  //   // dispatch({ type: "url", payload: _url });
+  //   setUrl(_url);
+  // };
 
   return (
     <>
@@ -66,7 +67,6 @@ const ImagePanel = ({ changeImage, image }) => {
           type='file'
           accept='image/png, image/jpeg'
           onChange={(e) => {
-            console.log(2);
             const _url = URL.createObjectURL(e.target.files[0]);
             setUrl(_url);
           }}

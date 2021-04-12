@@ -89,7 +89,10 @@ const state = {
   },
   logo: {
     active: "",
-    position: "top-left",
+    top: 0,
+    right: null,
+    bottom: null,
+    left: 0,
     opacity: 100,
     width: 33,
   },
