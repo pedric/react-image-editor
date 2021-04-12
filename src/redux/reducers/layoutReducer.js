@@ -9,6 +9,7 @@ const layoutReducer = (state = initialState.layout, action) => {
         name: action.payload.name,
         x: action.payload.x,
         y: action.payload.y,
+        margin: action.payload.margin,
       };
     default:
       return state;
