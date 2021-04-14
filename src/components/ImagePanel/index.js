@@ -52,13 +52,6 @@ const ImagePanel = ({ changeImage, image }) => {
     dispatch({ type: "y", payload: y });
   }, [y]);
 
-  // const handleUpload = (e) => {
-  //   console.log(1);
-  //   const _url = URL.createObjectURL(e.target.files[0]);
-  //   // dispatch({ type: "url", payload: _url });
-  //   setUrl(_url);
-  // };
-
   return (
     <>
       <h3>ImagePanel template</h3>

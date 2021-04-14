@@ -68,11 +68,16 @@ const state = {
   text: {
     content: "placeholder, click to edit",
     font: "",
+    top: 0,
+    right: null,
+    bottom: null,
+    left: 0,
+    size: 14,
   },
-  colors: {
+  color: {
     text: "",
     filter: "",
-    cackground: "",
+    background: "",
     filterOpacity: "50",
   },
   layout: {

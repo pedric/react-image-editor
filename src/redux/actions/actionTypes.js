@@ -11,3 +11,9 @@ export const SET_LOGO = "SET_LOGO";
 
 //menu
 export const TOGGLE_PANEL = "TOGGLE_PANEL";
+
+//text
+export const SET_TEXT = "SET_TEXT";
+
+// color
+export const SET_COLOR = "SET_COLOR";

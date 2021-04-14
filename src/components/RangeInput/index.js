@@ -5,7 +5,7 @@ const RangeInput = ({ value, setValue, range }) => {
     <input
       type='range'
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={(e) => setValue(parseInt(e.target.value))}
       min={range.min ? range.min : 0}
       max={range.max ? range.max : 100}
     />

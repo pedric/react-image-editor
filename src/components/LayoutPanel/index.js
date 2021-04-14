@@ -24,17 +24,17 @@ const Menu = ({ changeLayout, layout, state, ...props }) => {
         <button
           onClick={() => updateLayout({ name: "1:1", x: 100, y: 100, margin })}
         >
-          3:2
+          Square
         </button>
         <button
           onClick={() => updateLayout({ name: "3:2", x: 100, y: 66, margin })}
         >
-          3:2
+          Landscape
         </button>
         <button
           onClick={() => updateLayout({ name: "2:3", x: 66, y: 100, margin })}
         >
-          3:2
+          Portrait
         </button>
       </div>
       <div>
