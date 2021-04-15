@@ -63,7 +63,11 @@
 
 const state = {
   navigation: {
-    active: "image",
+    active: "layout",
+  },
+  uploads: {
+    image: "",
+    logo: "",
   },
   text: {
     content: "placeholder, click to edit",
@@ -87,13 +91,11 @@ const state = {
     margin: 10,
   },
   image: {
-    upload: "",
     x: 50,
     y: 50,
     size: 100,
   },
   logo: {
-    active: "",
     top: 0,
     right: null,
     bottom: null,

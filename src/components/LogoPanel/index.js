@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions/actionTypes";
 import RangeInput from "../RangeInput";
 
-const LogoPanel = ({ dispatch, logo }) => {
+const LogoPanel = ({ dispatch }) => {
   // console.log(logo);
-  const [active, setActive] = useState("");
+  const [upload, setUpload] = useState("");
   const [top, setTop] = useState(0);
   const [right, setRight] = useState("");
   const [bottom, setBottom] = useState("");
@@ -17,15 +17,22 @@ const LogoPanel = ({ dispatch, logo }) => {
   useEffect(() => {
     dispatch({
       type: actions.SET_LOGO,
-      payload: { active, top, right, bottom, left, opacity, width },
+      payload: { top, right, bottom, left, opacity, width },
     });
-  }, [active, top, right, bottom, left, opacity, width, dispatch]);
+  }, [top, right, bottom, left, opacity, width, dispatch]);
+
+  useEffect(() => {
+    dispatch({
+      type: actions.UPLOAD_LOGO,
+      payload: upload,
+    });
+  }, [upload]);
 
   return (
     <>
       <h3>LogoPanel template</h3>
       <div style={{ background: "gray", width: "60px" }}>
-        <img src={Logo} onClick={() => setActive(Logo)} alt='logo' />
+        <img src={Logo} onClick={() => setUpload(Logo)} alt='logo' />
       </div>
       <RangeInput value={top} setValue={setTop} range={{ min: 0, max: 1 }} />
       <RangeInput
@@ -56,6 +63,7 @@ const LogoPanel = ({ dispatch, logo }) => {
 const mapStateToProps = (state) => {
   return {
     logo: state.logoReducer,
+    uploads: state.uploadReducer,
   };
 };
 

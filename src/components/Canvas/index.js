@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Canvas = ({ layout, image, logo, text, color }) => {
+const Canvas = ({ layout, image, logo, text, color, uploads }) => {
   const imageSize = useMemo(() => {
     return image.size * 2;
   }, [image.size]);
@@ -24,12 +24,13 @@ const Canvas = ({ layout, image, logo, text, color }) => {
     padding-bottom: ${layout.y}%;
     margin: 0 auto;
     overflow: hidden;
-    /* background-repeat: no-repeat;
-    background-image: url(${image.upload});
+    background-repeat: no-repeat;
+    background-image: url(${uploads.image});
     background-size: ${imageSize}%;
-    background-position: ${image.x}% ${image.y}%;*/
+    background-position: ${image.x}% ${image.y}%;
 
     img {
+      display: none;
       position: absolute;
       top: ${image.y}%;
       left: ${image.x}%;
@@ -41,7 +42,7 @@ const Canvas = ({ layout, image, logo, text, color }) => {
   return (
     <>
       <Canvas>
-        <img src='blob:http://localhost:3000/929ef867-107c-4bfe-9a9b-a9677b723ae1' />
+        <img src={uploads.image} alt='#' />
       </Canvas>
     </>
   );
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => {
     logo: state.logoReducer,
     text: state.textReducer,
     color: state.colorReducer,
+    uploads: state.uploadReducer,
   };
 };
 

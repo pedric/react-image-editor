@@ -2,11 +2,12 @@ import React, { useState, useEffect, useReducer } from "react";
 import { connect } from "react-redux";
 import { setImage } from "../../redux/actions/imageActions";
 import RangeInput from "../RangeInput";
+import * as actions from "../../redux/actions/actionTypes";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "url":
-      return { ...state, upload: action.payload };
+    // case "url":
+    // return { ...state, upload: action.payload };
     case "x":
       return { ...state, x: action.payload };
     case "y":
@@ -18,7 +19,7 @@ const reducer = (state, action) => {
   }
 };
 
-const ImagePanel = ({ changeImage, image }) => {
+const ImagePanel = ({ changeImage, setuploadedImage, image }) => {
   const [state, dispatch] = useReducer(reducer, image);
   const [url, setUrl] = useState("");
   const [x, setX] = useState(50);
@@ -37,8 +38,8 @@ const ImagePanel = ({ changeImage, image }) => {
   }, [state, changeImage]);
 
   useEffect(() => {
-    dispatch({ type: "url", payload: url });
-  }, [url]);
+    setuploadedImage(url);
+  }, [url, setuploadedImage]);
 
   useEffect(() => {
     dispatch({ type: "size", payload: size });
@@ -82,12 +83,15 @@ const ImagePanel = ({ changeImage, image }) => {
 const mapStateToProps = (state) => {
   return {
     image: state.imageReducer,
+    upload: state.uploadReducer,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeImage: (image) => dispatch(setImage(image)),
+    setuploadedImage: (url) =>
+      dispatch({ type: actions.UPLOAD_IMAGE, payload: url }),
   };
 };
 

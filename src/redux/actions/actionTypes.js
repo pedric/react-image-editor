@@ -17,3 +17,7 @@ export const SET_TEXT = "SET_TEXT";
 
 // color
 export const SET_COLOR = "SET_COLOR";
+
+// uploads
+export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
+export const UPLOAD_LOGO = "UPLOAD_LOGO";
