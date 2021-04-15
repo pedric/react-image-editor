@@ -4,7 +4,9 @@ import initialState from "./initialState";
 const textReducer = (state = initialState.text, action) => {
   switch (action.type) {
     case actions.SET_TEXT:
-      return { ...action.payload };
+      return { ...state, ...action.payload };
+    case actions.SET_CONTENT:
+      return { ...state, content: action.payload };
     default:
       return state;
   }

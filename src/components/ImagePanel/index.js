@@ -19,7 +19,7 @@ const reducer = (state, action) => {
   }
 };
 
-const ImagePanel = ({ changeImage, setuploadedImage, image }) => {
+const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
   const [state, dispatch] = useReducer(reducer, image);
   const [url, setUrl] = useState("");
   const [x, setX] = useState(50);
@@ -55,7 +55,6 @@ const ImagePanel = ({ changeImage, setuploadedImage, image }) => {
 
   return (
     <>
-      <h3>ImagePanel template</h3>
       <div>
         <input
           type='file'
@@ -67,14 +66,28 @@ const ImagePanel = ({ changeImage, setuploadedImage, image }) => {
         />
 
         <RangeInput
+          color={theme.primary}
+          label='Size'
           value={size}
           setValue={setSize}
           range={{ min: 0, max: 100 }}
         />
 
-        <RangeInput value={x} setValue={setX} range={{ min: 0, max: 100 }} />
+        <RangeInput
+          color={theme.primary}
+          label='Horizontal position'
+          value={x}
+          setValue={setX}
+          range={{ min: 0, max: 100 }}
+        />
 
-        <RangeInput value={y} setValue={setY} range={{ min: 0, max: 100 }} />
+        <RangeInput
+          color={theme.primary}
+          label='Vertical position'
+          value={y}
+          setValue={setY}
+          range={{ min: 0, max: 100 }}
+        />
       </div>
     </>
   );
@@ -84,6 +97,7 @@ const mapStateToProps = (state) => {
   return {
     image: state.imageReducer,
     upload: state.uploadReducer,
+    theme: state.themeReducer,
   };
 };
 

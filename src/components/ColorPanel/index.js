@@ -11,11 +11,11 @@ import ColorInput from "../ColorInput";
 //   filterOpacity: "50",
 // }
 
-const ColorPanel = ({ dispatch, ...props }) => {
+const ColorPanel = ({ dispatch, theme, ...props }) => {
   const [text, setTextColor] = useState("#000");
   const [filter, setFilterColor] = useState("#000");
-  const [background, setBgColor] = useState("#fff");
-  const [filterOpacity, setFilterOpacity] = useState(100);
+  const [background, setBgColor] = useState("#ccc");
+  const [filterOpacity, setFilterOpacity] = useState(0);
 
   useEffect(() => {
     dispatch({
@@ -30,6 +30,8 @@ const ColorPanel = ({ dispatch, ...props }) => {
       <ColorInput value={filter} setValue={setFilterColor} />
       <ColorInput value={background} setValue={setBgColor} />
       <RangeInput
+        color={theme.primary}
+        label='Filter opacity'
         value={filterOpacity}
         setValue={setFilterOpacity}
         range={{ min: 0, max: 100 }}
@@ -41,6 +43,7 @@ const ColorPanel = ({ dispatch, ...props }) => {
 const mapStateToProps = (state) => {
   return {
     colors: state.colorReducer,
+    theme: state.themeReducer,
   };
 };
 

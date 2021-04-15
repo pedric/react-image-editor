@@ -6,6 +6,7 @@ import logoReducer from "./logoReducer";
 import textReducer from "./textReducer";
 import colorReducer from "./colorReducer";
 import uploadReducer from "./uploadReducer";
+import themeReducer from "./themeReducer";
 
 const rootReducer = combineReducers({
   layoutReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   textReducer,
   colorReducer,
   uploadReducer,
+  themeReducer,
 });
 
 export default rootReducer;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../redux/actions/menuActions";
-import * as actions from "../../redux/actions/actionTypes";
 import WorkArea from "../WorkArea";
+import { Nav, Button } from "./styles";
 
-const Menu = ({ toggleMenu, options, active, ...props }) => {
+const Menu = ({ toggleMenu, options, active, theme, ...props }) => {
   // useEffect(() => {
   //   console.log("active", active);
   // }, [active]);
@@ -13,16 +13,26 @@ const Menu = ({ toggleMenu, options, active, ...props }) => {
     toggleMenu(panel);
   };
 
+  const styles = {
+    color: `${theme.primary}`,
+  };
+
   return (
     <>
-      <h2>menu template</h2>
-      {options.length > 0
-        ? options.map((option) => (
-            <button key={option} onClick={() => toggle(option)}>
-              {option}
-            </button>
-          ))
-        : null}
+      <Nav>
+        {options.length > 0
+          ? options.map((option) => (
+              <Button
+                style={styles}
+                className={active === option ? "active" : ""}
+                key={option}
+                onClick={() => toggle(option)}
+              >
+                {option}
+              </Button>
+            ))
+          : null}
+      </Nav>
       <WorkArea activeTab={active} />
     </>
   );
@@ -32,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     options: ["layout", "image", "logo", "text", "colors", "download"],
     active: state.menuReducer.active,
+    theme: state.themeReducer,
   };
 };
 

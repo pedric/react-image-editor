@@ -4,7 +4,7 @@ import { setLayout } from "../../redux/actions/layoutActions";
 import RangeInput from "../RangeInput";
 import * as actions from "../../redux/actions/actionTypes";
 
-const Menu = ({ changeLayout, layout, state, ...props }) => {
+const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
   const [margin, setMargin] = useState(50);
   useEffect(() => {
     changeLayout({ ...layout, margin: parseInt(margin) });
@@ -39,6 +39,8 @@ const Menu = ({ changeLayout, layout, state, ...props }) => {
       </div>
       <div>
         <RangeInput
+          color={theme.primary}
+          label='Margin'
           value={margin}
           setValue={setMargin}
           range={{ min: 0, max: 100 }}
@@ -51,6 +53,7 @@ const Menu = ({ changeLayout, layout, state, ...props }) => {
 const mapStateToProps = (state) => {
   return {
     layout: state.layoutReducer,
+    theme: state.themeReducer,
   };
 };
 

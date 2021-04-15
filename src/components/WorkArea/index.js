@@ -8,8 +8,7 @@ import TextPanel from "../TextPanel";
 
 const WorkArea = (props) => {
   return (
-    <div>
-      <pre>workarea - {props.activeTab}</pre>
+    <div style={{ marginTop: "32px" }}>
       {props.activeTab && props.activeTab.toLowerCase() === "layout" && (
         <LayoutPanel />
       )}

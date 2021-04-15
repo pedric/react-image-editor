@@ -70,19 +70,20 @@ const state = {
     logo: "",
   },
   text: {
-    content: "placeholder, click to edit",
+    content: "",
     font: "",
     top: 0,
     right: null,
     bottom: null,
     left: 0,
     size: 14,
+    align: "",
   },
   color: {
     text: "",
     filter: "",
     background: "",
-    filterOpacity: "50",
+    filterOpacity: 0,
   },
   layout: {
     name: "1:1",
@@ -102,6 +103,11 @@ const state = {
     left: 0,
     opacity: 100,
     width: 33,
+  },
+  theme: {
+    background: "",
+    primary: "",
+    secondary: "",
   },
 };
 
