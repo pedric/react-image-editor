@@ -2,9 +2,13 @@ import React from "react";
 import { Input, LabelWrapper } from "./styles";
 
 const RangeInput = ({ value, setValue, range, label, color }) => {
+  if (typeof range !== "object") {
+    range = { min: 0, max: 100 };
+  }
+
   return (
     <div>
-      <LabelWrapper style={{ borderBottom: `1px solid ${color}` }}>
+      <LabelWrapper style={{ "--color": color }}>
         <label>{label}</label>
       </LabelWrapper>
       <Input

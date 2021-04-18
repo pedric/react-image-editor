@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions/actionTypes";
 import RangeInput from "../RangeInput";
+import RadioInput from "./styles";
 
 const TextPanel = ({ dispatch, theme, ...props }) => {
   const [text, setText] = useState("");
-  // const [content, setContent] = useState(props.content);
   const [font, setFont] = useState("sans-serif");
   const [top, setTop] = useState(0);
   const [right, setRight] = useState("");
@@ -25,52 +25,83 @@ const TextPanel = ({ dispatch, theme, ...props }) => {
     const text = e.target.value;
     const formattedText = text.replace(/[\n]/g, "<br/>");
     dispatch({ type: actions.SET_CONTENT, payload: formattedText });
-    // setContent(formattedText);
     setText(text);
   };
+
+  const sectionHeadingStyles = {
+    padding: "8px 0",
+    fontFamily: "sans-serif",
+    fontSize: "11px",
+    fontWeight: "400",
+    textTransform: "uppercase",
+    width: "90%",
+    margin: "4px auto",
+    borderBottom: `1px solid ${theme.primary}`,
+  };
+
   return (
     <>
-      <div>
-        <input
-          type='radio'
-          name='horizontalPosition'
-          onChange={(e) => {
-            setRight(false);
-            setLeft(true);
-          }}
-          value='left'
-        />
-        <input
-          type='radio'
-          name='horizontalPosition'
-          onChange={(e) => {
-            setLeft(false);
-            setRight(true);
-          }}
-          value='right'
-        />
+      <div style={sectionHeadingStyles}>
+        <h3>Position</h3>
       </div>
       <div>
-        <input
-          type='radio'
-          name='verticalPosition'
-          onChange={(e) => {
-            setBottom(false);
-            setTop(true);
-          }}
-          value='top'
-        />
-        <input
-          type='radio'
-          name='verticalPosition'
-          onChange={(e) => {
-            setTop(false);
-            setBottom(true);
-          }}
-          value='bottom'
-        />
+        <RadioInput>
+          <label>Right</label>
+          <input
+            type='radio'
+            name='horizontalPosition'
+            onChange={(e) => {
+              setRight(false);
+              setLeft(true);
+            }}
+            value='left'
+            defaultChecked
+          />
+        </RadioInput>
+        <RadioInput>
+          <label>Left</label>
+          <input
+            type='radio'
+            name='horizontalPosition'
+            onChange={(e) => {
+              setLeft(false);
+              setRight(true);
+            }}
+            value='right'
+          />
+        </RadioInput>
       </div>
       <div>
+        <RadioInput>
+          <label>Top</label>
+          <input
+            type='radio'
+            name='verticalPosition'
+            onChange={(e) => {
+              setBottom(false);
+              setTop(true);
+            }}
+            value='top'
+            defaultChecked
+          />
+        </RadioInput>
+        <RadioInput>
+          <label>Bottom</label>
+          <input
+            type='radio'
+            name='verticalPosition'
+            onChange={(e) => {
+              setTop(false);
+              setBottom(true);
+            }}
+            value='bottom'
+          />
+        </RadioInput>
+      </div>
+      <div>
+        <div style={sectionHeadingStyles}>
+          <h3>Alignment</h3>
+        </div>
         <button value='left' onClick={(e) => setAlignment(e.target.value)}>
           Left
         </button>
@@ -82,6 +113,9 @@ const TextPanel = ({ dispatch, theme, ...props }) => {
         </button>
       </div>
       <div>
+        <div style={sectionHeadingStyles}>
+          <h3>Font</h3>
+        </div>
         <button value='sans-serif' onClick={(e) => setFont(e.target.value)}>
           Sans
         </button>
@@ -89,14 +123,24 @@ const TextPanel = ({ dispatch, theme, ...props }) => {
           Serif
         </button>
       </div>
-      <textarea value={text} onChange={(e) => handleTextChange(e)} />
-      <RangeInput
-        color={theme.primary}
-        label='Font size'
-        value={size}
-        setValue={setSize}
-        range={{ min: 0, max: 100 }}
-      />
+      <div>
+        <div style={sectionHeadingStyles}>
+          <h3>Content</h3>
+        </div>
+        <textarea value={text} onChange={(e) => handleTextChange(e)} />
+      </div>
+      <div>
+        <div style={sectionHeadingStyles}>
+          <h3>Font size</h3>
+        </div>
+        <RangeInput
+          color={theme.primary}
+          label='Font size'
+          value={size}
+          setValue={setSize}
+          range={{ min: 0, max: 100 }}
+        />
+      </div>
     </>
   );
 };

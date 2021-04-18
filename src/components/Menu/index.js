@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../redux/actions/menuActions";
 import WorkArea from "../WorkArea";
 import { Nav, Button } from "./styles";
+import MenuContext from "../../MenuContext";
 
-const Menu = ({ toggleMenu, options, active, theme, ...props }) => {
-  // useEffect(() => {
-  //   console.log("active", active);
-  // }, [active]);
-
+const Menu = ({ toggleMenu, active, theme }) => {
   const toggle = (panel) => {
     toggleMenu(panel);
   };
@@ -17,11 +14,13 @@ const Menu = ({ toggleMenu, options, active, theme, ...props }) => {
     color: `${theme.primary}`,
   };
 
+  const menuItems = useContext(MenuContext);
+
   return (
     <>
       <Nav>
-        {options.length > 0
-          ? options.map((option) => (
+        {menuItems.length > 0
+          ? menuItems.map((option) => (
               <Button
                 style={styles}
                 className={active === option ? "active" : ""}
@@ -40,7 +39,6 @@ const Menu = ({ toggleMenu, options, active, theme, ...props }) => {
 
 const mapStateToProps = (state) => {
   return {
-    options: ["layout", "image", "logo", "text", "colors", "download"],
     active: state.menuReducer.active,
     theme: state.themeReducer,
   };

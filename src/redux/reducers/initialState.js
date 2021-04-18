@@ -63,7 +63,7 @@
 
 const state = {
   navigation: {
-    active: "layout",
+    active: "image",
   },
   uploads: {
     image: "",

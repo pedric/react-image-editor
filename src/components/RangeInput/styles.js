@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 export const Input = styled.input`
   display: block;
@@ -71,4 +70,5 @@ export const LabelWrapper = styled.div`
   text-transform: uppercase;
   width: 90%;
   margin: 4px auto;
+  border-bottom: 1px solid var(--color);
 `;

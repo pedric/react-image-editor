@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import { Canvas, DownloadableCanvas } from "./styles";
 import Logo from "./components/Logo";
 import Text from "./components/Text";
 import Grid from "./components/Grid";
 import Filter from "./components/Filter";
+import checked from "../../images/checked.png";
 
 const EditorMonitor = ({ layout, image, logo, text, color, uploads }) => {
   const imageSize = useMemo(() => {
@@ -23,8 +24,9 @@ const EditorMonitor = ({ layout, image, logo, text, color, uploads }) => {
     width: `${layout.x}%`,
     paddingBottom: `${layout.y}%`,
     backGroundColor: `${color.background}`,
-    backgroundImage: `url(${uploads.image})`,
-    backgroundSize: `${imageSize}%`,
+    backgroundImage: `url(${uploads.image ? uploads.image : checked})`,
+    backgroundSize: `${uploads.image ? imageSize + "%" : "20px"}`,
+    backgroundRepeat: `${uploads.image ? "no-repeat" : "repeat"}`,
     backgroundPosition: `${image.x}% ${image.y}%`,
   };
 

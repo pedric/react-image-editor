@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import downloadCanvas from "./downloadHandler";
 import { saveAs } from "file-saver";
 import html2canvas from "html2canvas";
 
@@ -14,7 +13,7 @@ const DownloadPanel = ({ layout }) => {
     const canvasSettings = {
       width: exportWidth,
       height: exportHeight,
-      useCORS: false,
+      useCORS: true,
       taintTest: false,
       allowTaint: true,
       x: 9999,
@@ -39,10 +38,9 @@ const DownloadPanel = ({ layout }) => {
       ".png";
 
     let element = document.getElementById("downloadable-canvas");
-    let rect = element.getBoundingClientRect();
+    // let rect = element.getBoundingClientRect();
     html2canvas(element, canvasSettings)
       .then((canvas) => {
-        console.log(canvas);
         canvas.toBlob((blob) => {
           saveAs(blob, filename);
         });
@@ -55,9 +53,8 @@ const DownloadPanel = ({ layout }) => {
 
   return (
     <>
-      {loading && <h1>laddar..</h1>}
       <button onClick={() => download(layout.x, layout.y)}>
-        Download image
+        {loading > 0 ? "Loading.." : "Download image"}
       </button>
     </>
   );

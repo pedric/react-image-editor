@@ -26,9 +26,17 @@ const ColorPanel = ({ dispatch, theme, ...props }) => {
 
   return (
     <>
-      <ColorInput value={text} setValue={setTextColor} />
-      <ColorInput value={filter} setValue={setFilterColor} />
-      <ColorInput value={background} setValue={setBgColor} />
+      <ColorInput label='Text color' value={text} setValue={setTextColor} />
+      <ColorInput
+        label='Filter color'
+        value={filter}
+        setValue={setFilterColor}
+      />
+      <ColorInput
+        label='Background color'
+        value={background}
+        setValue={setBgColor}
+      />
       <RangeInput
         color={theme.primary}
         label='Filter opacity'

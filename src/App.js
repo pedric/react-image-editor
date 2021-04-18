@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Menu from "./components/Menu";
-import LayoutPanel from "./components/LayoutPanel";
 import EditorMonitor from "./components/EditorMonitor";
 import DebugMonitor from "./components/DebugMonitor";
 import { connect } from "react-redux";
@@ -24,6 +23,7 @@ function App({ dispatch, theme }) {
   useEffect(() => {
     let style = darkMode ? { ...themes.dark } : { ...themes.light };
     toggleTheme(style);
+    // eslint-disable-next-line
   }, [darkMode]);
 
   const toggleTheme = (style) => {
@@ -37,12 +37,16 @@ function App({ dispatch, theme }) {
 
   return (
     <StyledAppWrapper style={styles}>
-      <div>
-        <input
-          type='checkbox'
-          value={darkMode}
-          onChange={() => setDarkMode((darkMode) => !darkMode)}
-        />
+      <div style={{ width: "100%", maxWidth: "500px", margin: "2px auto 0" }}>
+        <label htmlFor='darkmode'>
+          <input
+            name='darkmode'
+            type='checkbox'
+            value={darkMode}
+            onChange={() => setDarkMode((darkMode) => !darkMode)}
+          />
+          Toggle dark/light mode
+        </label>
       </div>
       <div className='App'>
         <DebugMonitor hidden />

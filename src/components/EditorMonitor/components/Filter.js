@@ -3,18 +3,20 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 const Filter = ({ color }) => {
-  const StyledFilter = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: ${color.filter};
-    opacity: ${color.filterOpacity / 100};
-  `;
-
-  return <StyledFilter></StyledFilter>;
+  const styles = {
+    backgroundColor: `${color.filter}`,
+    opacity: `${color.filterOpacity / 100}`,
+  };
+  return <StyledFilter style={styles}></StyledFilter>;
 };
+
+const StyledFilter = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+`;
 
 const mapStateToProps = (state) => {
   return {

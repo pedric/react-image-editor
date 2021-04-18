@@ -1,3 +1,11 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
 main {
   transition: all 150ms ease-in-out;
 }

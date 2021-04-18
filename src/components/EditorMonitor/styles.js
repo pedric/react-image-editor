@@ -6,7 +6,6 @@ export const Canvas = styled.div`
   height: 0px;
   margin: 0 auto;
   overflow: hidden;
-  background-repeat: no-repeat;
 
   &.downloadable {
     position: fixed;

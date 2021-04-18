@@ -2,19 +2,14 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { setLayout } from "../../redux/actions/layoutActions";
 import RangeInput from "../RangeInput";
-import * as actions from "../../redux/actions/actionTypes";
 
 const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
   const [margin, setMargin] = useState(50);
   useEffect(() => {
     changeLayout({ ...layout, margin: parseInt(margin) });
-  }, [margin, changeLayout]);
+  }, [margin, changeLayout, layout]);
 
   const updateLayout = (obj) => {
-    // dispatch({
-    //   type: actions.SET_LAYOUT,
-    //   payload: { name: "2:3", x: 100, y: 66 },
-    // });
     changeLayout(obj);
   };
 
