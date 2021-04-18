@@ -20,9 +20,3 @@ test("check if", () => {
   const labelElement = screen.getByText(/test label/i);
   expect(labelElement).toBeInTheDocument();
 });
-
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
