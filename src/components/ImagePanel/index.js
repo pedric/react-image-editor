@@ -123,6 +123,7 @@ const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
               const _url = URL.createObjectURL(e.target.files[0]);
               setUrl(_url);
             }}
+            onDrop={(e) => console.log(e)}
           />
           <div>
             <h4>Load a random dog</h4>
