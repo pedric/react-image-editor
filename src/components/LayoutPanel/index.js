@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState, useContext } from "react";
 import { setLayout } from "../../redux/actions/layoutActions";
 import RangeInput from "../RangeInput";
+import EditorContext from "../../context";
 
-const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
+const Menu = () => {
+  const { store, dispatch } = useContext(EditorContext);
   const [margin, setMargin] = useState(50);
   useEffect(() => {
-    changeLayout({ ...layout, margin: parseInt(margin) });
-  }, [margin, changeLayout, layout]);
+    // changeLayout({ ...layout, margin: parseInt(margin) });
+  }, []);
 
   const updateLayout = (obj) => {
-    changeLayout(obj);
+    // changeLayout(obj);
   };
 
   return (
@@ -34,7 +35,7 @@ const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
       </div>
       <div>
         <RangeInput
-          color={theme.primary}
+          // color={theme.primary}
           label='Margin'
           value={margin}
           setValue={setMargin}
@@ -45,17 +46,17 @@ const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    layout: state.layoutReducer,
-    theme: state.themeReducer,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     layout: state.layoutReducer,
+//     theme: state.themeReducer,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeLayout: (layout) => dispatch(setLayout(layout)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     changeLayout: (layout) => dispatch(setLayout(layout)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default Menu;
