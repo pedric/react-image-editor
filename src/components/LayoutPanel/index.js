@@ -6,8 +6,10 @@ import RangeInput from "../RangeInput";
 const Menu = ({ changeLayout, layout, state, theme, ...props }) => {
   const [margin, setMargin] = useState(50);
   useEffect(() => {
+    console.log(1);
     changeLayout({ ...layout, margin: parseInt(margin) });
-  }, [margin, changeLayout, layout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [margin]);
 
   const updateLayout = (obj) => {
     changeLayout(obj);
