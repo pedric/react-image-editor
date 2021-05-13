@@ -49,7 +49,7 @@ function App({ dispatch, theme }) {
         </label>
       </div>
       <div className='App'>
-        <DebugMonitor hidden />
+        <DebugMonitor />
         <EditorMonitor />
         <Menu />
       </div>

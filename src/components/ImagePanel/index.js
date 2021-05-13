@@ -21,7 +21,7 @@ const reducer = (state, action) => {
 
 const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
   const [state, dispatch] = useReducer(reducer, image);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState();
   const [x, setX] = useState(50);
   const [y, setY] = useState(50);
   const [size, setSize] = useState(50);
@@ -64,14 +64,6 @@ const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
   };
   // end apiHandlers
 
-  /*
-  The "flow" is as;
-  update local state with reducer which updates by separate
-  useEffect "listening" on useState(passed as props to inputs) for each property.
-  The complexity is from this being a school-project where I'm supposed
-  to use Redux and lot of different hooks.
-  */
-
   const callback = useCallback(() => {
     getImagesFromApi(page);
     // eslint-disable-next-line
@@ -81,9 +73,10 @@ const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
     changeImage(state);
   }, [state, changeImage]);
 
-  useEffect(() => {
-    setuploadedImage(url);
-  }, [url, setuploadedImage]);
+  // useEffect(() => {
+  //   console.log(1);
+  //   setuploadedImage(url);
+  // }, [url, setuploadedImage]);
 
   useEffect(() => {
     dispatch({ type: "size", payload: size });
@@ -122,18 +115,19 @@ const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
             onChange={(e) => {
               const _url = URL.createObjectURL(e.target.files[0]);
               setUrl(_url);
+              setuploadedImage(_url);
             }}
             onDrop={(e) => console.log(e)}
           />
-          <div>
+          {/* <div>
             <h4>Load a random dog</h4>
             <button
               onClick={() => getImageFromApi("https://random.dog/woof.json")}
             >
               Get a dog image
             </button>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <h4>Or pick an image below</h4>
             <div>
               <button
@@ -158,7 +152,7 @@ const ImagePanel = ({ changeImage, setuploadedImage, image, theme }) => {
                   );
                 })
               : null}
-          </div>
+          </div> */}
         </div>
         <RangeInput
           color={theme.primary}
